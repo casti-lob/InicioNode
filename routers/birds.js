@@ -1,20 +1,11 @@
 const express = require('express')
 const router = express.Router()
+const main = require('../controllers/birds')
 
-// Podríamos incluir middleware específico para este router
-router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
-  next()
-})
 // ruta raíz de este router
-router.get('/', function (req, res) {
-  res.send('Birds home page')
-})
-// Ruta about
-router.get('/about', function (req, res) {
-  res.send('About birds')
-})
-// Exportamos el router para poder utilizarlo fuera
+router.get('/', main)
+
+
 module.exports = router
 
 
