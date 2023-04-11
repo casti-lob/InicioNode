@@ -1,3 +1,4 @@
+/* Esto es para diskdb
 const db = require('../models/db')
 db.connect('data',['birds.json'])
 function getBirds(req, res){
@@ -46,6 +47,58 @@ function updateBirds(req, res){
     }
    
 }
+*/
 
+const Birds = require('../models/birds');
 
-module.exports={getBirds, getBird, addBird, delBirds, updateBirds};
+// Tenemos que hacer la función async para poder utiilzar await dentro 
+async function addBird(req, res){
+    //Indicamos los argumentos que vamos a soliciltar en el body de la solicitud
+    const {name,species} = req.body;
+    //Creamos el objeto con los datos del body
+    const bird = new Birds({name,species})
+    //Guardamos en la bbdd
+    await bird.save();
+    res.json({bird});
+}
+
+async function getBirds(req,res){
+    
+    
+    const birds = await Birds.find()
+    res.json(birds)
+}
+
+async function getBird(req,res){
+    const name = req.params.name
+    const bird = await Birds.find({name:name})
+    if(bird.length){
+        res.json(bird)
+    }else{
+        res.status(404).json({mensaje:`No se ha encontrado el pajaro con el nombre ${name}`})
+    }
+}
+
+async function delBirds(req,res){
+    const id = req.params.id
+    const bird = await Birds.find({_id:id})
+    if(bird.length){
+        await Birds.deleteOne({_id:id})
+        res.json(bird);
+    }else{
+        res.status(404).json({mensaje:`No se ha encontrado el pajaro con el nombre ${id}`})
+    }
+}
+
+async function updateBirds(req,res){
+    const id = req.params.id
+    const findBird = await Birds.find({_id:id})
+    const newBird = req.body
+    if(findBird.length){
+        await Birds.updateOne({_id:id},newBird)
+        res.json(newBird);
+    }else{
+        res.status(404).json({mensaje:`No se ha encontrado el pajaro con el nombre ${id}`})
+    }
+}
+module.exports={addBird,getBirds,getBird,delBirds,updateBirds};

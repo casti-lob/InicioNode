@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {getBirds, getBird, addBird, delBirds, updateBirds} = require('../controllers/birds')
+const {addBird,getBirds,getBird,delBirds,updateBirds} = require('../controllers/birds')
 
 
 // ruta raíz de este router

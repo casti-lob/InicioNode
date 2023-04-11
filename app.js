@@ -1,17 +1,18 @@
 const express = require('express');
-const { dbConnection } = require('./database/config.js');
+
 const app = express();
 //PARA QUE FUNCIONE EL .env
 require ('dotenv').config();
 const birds = require('./routers/birds.js')
 const guitars = require('./routers/guitars.js')
 
-
+//Conexion MondoDB
+const { dbConnection } = require('./database/config.js');
 async function connectAtlas(){
     await dbConnection()
 }
 connectAtlas()
-console.log(process.env.PRUEBA)
+
 //middleware
 app.use(express.json())
 
