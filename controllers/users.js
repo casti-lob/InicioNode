@@ -26,5 +26,21 @@ async function addUser  (req, res){
 
 }
 
+async function login(req, res){
+    const {email,password}= req.body;
+    const user = await User.findOne({email})
 
-module.exports={addUser}
+    //Encriptamos para comparar la contraseña
+    const validPassword= bcryptjs.compareSync(password,user.password)
+
+    if(!user){
+        return res.status(400).json({mensage:'El usuario no existe'})
+    }else if(!validPassword){
+        return res.status(400).json({mensage:'La contraseña no es correcta'})
+    }else{
+        res.json({user})
+    }
+}
+
+
+module.exports={addUser,login}

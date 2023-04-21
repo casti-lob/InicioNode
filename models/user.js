@@ -15,10 +15,10 @@ const UserSchema = Schema({
         required: [true, 'El password es obligatorio'],
         
     },
-    rol:{
+    rol: {
         type: String,
-        required: [true, 'El nombre es obligatorio'],
-       
+        required: true,
+        emun: ['ADMIN', 'USER']
     }
 })
 module.exports = model('User',UserSchema);

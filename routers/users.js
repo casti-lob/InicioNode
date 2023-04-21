@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const{addUser}=require('../controllers/users')
+const{addUser,login}=require('../controllers/users')
 
 //importamos el middleware de validación
 const {check} = require('express-validator')
@@ -14,5 +14,11 @@ router.post('/',[
     check('rol').custom(isValidRol),
     validarCampos
 ],addUser)
+
+router.post('/auth/login',[
+    check('email','El email es requerido').not().isEmpty(),
+    check('password','El password es requerido').not().isEmpty(),
+    validarCampos
+],login)
 
 module.exports = router
