@@ -11,7 +11,7 @@ router.post('/',[
     check('name','El nobre es obligatorio').not().isEmpty(),
     check('password', 'El password tiene que tener una longitud minima de 3 caracteres').isLength({min:3}),
     check('password','El password es obligatorio').not().isEmpty(),
-    check('rol').custom(isValidRol),
+    //check('rol').custom(isValidRol),
     validarCampos
 ],addUser)
 
