@@ -28,22 +28,41 @@ async function addUser  (req, res){
 
 async function login(req, res){
     const {email,password}= req.body;
-    const user = await User.findOne({email})
-    console.log(user)
+    try {
+        const user = await User.findOne({email})
+        if(!user){
+            return res.status(400).json({mensage:'El usuario no existe'})
+        }else{
+            if(!user.state){
+                return res.status(400).json({msg:'El usuario no esta activo'})
+            }else{
+                const validPassword= bcryptjs.compareSync(password,user.password)
+                if(!validPassword){
+                    return res.status(400).json({mensage:'La contraseña no es correcta'})
+                }else{
+                    res.json({msg:'READY!!'})
+            }
+            }
+        }
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({msg:'Ha ocurrido un error inesperado'})
+    }
+
+
+
+
+
+
+
+
+
+    
     
 
    
-    if(!user){
-        return res.status(400).json({mensage:'El usuario no existe'})
-    }else{
-         //Encriptamos para comparar la contraseña
-        const validPassword= bcryptjs.compareSync(password,user.password)
-        if(!validPassword){
-            return res.status(400).json({mensage:'La contraseña no es correcta'})
-        }else{
-            res.json({user})
-        }
-    }
+   
     
    
 }

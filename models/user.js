@@ -19,6 +19,16 @@ const UserSchema = Schema({
         type: String,
         required: true,
         emun: ['ADMIN', 'USER']
+    },
+    state:{
+        type: Boolean,
     }
 })
+
+UserSchema.methods.toJSON = function() {
+    const { __v, password, _id, ...usuario} = this.toObject();
+    usuario.uid = _id;
+    return usuario;
+}
+
 module.exports = model('User',UserSchema);
