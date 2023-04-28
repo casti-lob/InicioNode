@@ -34,5 +34,8 @@ app.use('guitars/:id',guitars)
 
 app.use('/users',users)
 app.use('/users/auth/login',users)
+app.use('users/:id',users)
+
 app.listen(process.env.PORT)
+
 console.log(`Server listening on port${process.env.PORT}`)

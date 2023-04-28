@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const User = require('../models/user');
 const bcryptjs = require('bcryptjs');
+const {genJWT} = require('../helpers/genJWT')
 
 async function addUser  (req, res){
     
@@ -18,7 +19,7 @@ async function addUser  (req, res){
     //Encriptamos contraseña
     const salt = bcryptjs.genSaltSync();
     user.password= bcryptjs.hashSync(password,salt);
-
+    user.state
     //Guardamos en la bbdd
     await user.save();
     //Mostramos el user 
@@ -40,7 +41,16 @@ async function login(req, res){
                 if(!validPassword){
                     return res.status(400).json({mensage:'La contraseña no es correcta'})
                 }else{
-                    res.json({msg:'READY!!'})
+                    if(!user.state){
+                        return res.status(400).json({msg:'El usuario esta inactivo'})
+                    }else{
+                        //Generamos el token
+                        const token = await genJWT(user._id)
+                        res.json({
+                            token,
+                            msg:'READY!!'})
+                    }
+                   
             }
             }
         }
@@ -50,22 +60,14 @@ async function login(req, res){
         res.status(500).json({msg:'Ha ocurrido un error inesperado'})
     }
 
+}
 
-
-
-
-
-
-
-
-    
-    
-
-   
-   
-    
-   
+async function delUser(req,res){
+    const id = req.params.id;
+    const user = await User.findByIdAndUpdate(id,{"state": false});
+    const token = req.user
+    res.json({user, token})
 }
 
 
-module.exports={addUser,login}
+module.exports={addUser,login,delUser}

@@ -15,3 +15,5 @@ const genJWT =(uid = '')=>{
         })
     })
 }
+
+module.exports={genJWT}
