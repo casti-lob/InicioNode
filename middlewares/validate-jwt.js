@@ -1,8 +1,9 @@
 //middleware para validar el token
 const { request, response} = require('express')
 const jwt = require('jsonwebtoken');
+const User = require('../models/user');
 
-const validateJWT = (req= request, res=response, next) => {
+const validateJWT = async (req= request, res=response, next) => {
     const token = req.header('x-token');
 
     if (!token) {
@@ -14,7 +15,9 @@ const validateJWT = (req= request, res=response, next) => {
     try{
         //const payload = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
         const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
-        req.uid = uid;
+        const user = await User.findById(uid) //Recuperamos el usuario
+        req.userd = user;
+        
         next();
     }catch(error){
     console.log(error)

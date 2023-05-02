@@ -65,7 +65,7 @@ async function login(req, res){
 async function delUser(req,res){
     const id = req.params.id;
     const user = await User.findByIdAndUpdate(id,{"state": false});
-    const token = req.user
+    const token = req.userd
     res.json({user, token})
 }
 
