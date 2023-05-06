@@ -28,7 +28,7 @@ app.use('birds/:id',birds);
 
 
 app.use('/guitars',guitars)
-app.use('/guitars/:name',guitars)
+app.use('/guitars/:id',guitars)
 app.use('guitars/add',guitars)
 app.use('guitars/:id',guitars)
 

@@ -1,51 +1,97 @@
 //Conectamos con models
 const db = require('../models/db')
+const Guitars = require("../models/guitar")
 db.connect('data',['guitars.json'])
-function getGuitars(req, res){
-   
-    guitars = db.guitars.find();
+const Users = require("../models/user")
+
+async function getGuitars(req, res){
+   //queryParams
+   const {nombre} = req.query;
+    let guitars;
+    if(!nombre){
+        guitars = await Guitars.find({});
+    }else if(nombre){
+        guitars = await Guitars.find({nombre});
+    }
+   if(guitars.length){
     res.status(200).json(guitars)
+   }else{
+    res.status(404).json(`La base de datos esta vacia, inserte datos`)
+   }
+    
 
 }
 
-function getGuitar(req, res){
-    nameGuitars = req.params.name
-    guitar = db.guitars.findOne({name:nameGuitars})
-    if(guitar!=null){
+async function getGuitar(req, res){
+    const id = req.params.id
+    const guitar = await Guitars.find({_id: id})
+    if(!guitar.length){
         res.json(guitar);
     }else{
-        res.status(404).json(`No se ha encontrado la guitarra con el id ${nameGuitars}`)
+        res.status(404).json(`No se ha encontrado la guitarra con el id ${id}`)
     }
 }
 
-function addGuitar(req,res){
-    newGuitar = req.body
-    db.guitars.save(newGuitar)
-    res.json({newGuitar})
-}
-
-function delGuitar(req,res){
-    idGuitar = req.params.id
-    guitar = db.guitars.findOne({_id: idGuitar})
-    if(guitar!= null){
-        db.guitars.remove({_id: idGuitar})
-        res.send(`Se ha borrado la guitarra`)
+async function addGuitar(req,res){
+    const {marca,categoria,modelo,nombre,precio,idUser} = req.body
+    const guitar = new Guitars({marca,categoria,modelo,nombre,precio,idUser})
+    
+    const user = await Users.findById(guitar.idUser);
+    if(!user.length){
+        await guitar.save();
+        res.json({guitar})
     }else{
-        res.status(400).send(`No existe la guitarra con id${idGuitar}`)
+        res.status(404).json(`No existe el usuario con ${idUser}`)
     }
+    
 }
 
-function updateGuitar(req,res){
-    idGuitar = req.params.id
-    checkguitar = db.guitars.findOne({_id: idGuitar})
-    guitar= req.body
-    if(checkguitar!= null){
-        db.guitars.update({_id: idGuitar},guitar)
+async function delGuitar(req,res){
+
+    const {userId} = req.query
+    let user;
+    if(!userId){
+        res.status(400).send(`Necesitas la query userId`)
+    }else{
+        user = await Users.findById(userId)
+        const idGuitar = req.params.id
+        const guitar = await Guitars.find({_id: idGuitar})
+        if(user.rol != "ADMIN"){
+            if(guitar.length){
+                await Guitars.deleteOne({_id:idGuitar})
+                res.json(guitar)
+            }else{
+                res.status(400).send(`No existe la guitarra con id${idGuitar}`)
+            }
+        }else{
+            res.status(400).send(`El usuario ${user.name} no es ADMINISTRADOR`)
+        }
+    }
+    /*
+   
+   
+    
+*/
+    
+}
+
+async function updateGuitar(req,res){
+    const idGuitar = req.params.id
+    
+    const guitar= req.body
+    const checkguitar = await Guitars.find({_id: idGuitar})
+    console.log(checkguitar)
+    
+    if(checkguitar.length){
+        await Guitars.updateOne({_id: idGuitar},guitar)
         res.json(guitar)
     }else{
         res.status(400).send(`No existe la guitarra con id${idGuitar}`)
     }
+   
+    
 }
+
 
 
 module.exports={getGuitars, getGuitar, addGuitar, delGuitar, updateGuitar};

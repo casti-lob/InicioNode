@@ -12,11 +12,13 @@ const GuitarSchema = Schema({
     modelo:{
         type:String,
         required: [true, 'El modelo es obligatorio'],
+        unique: true
 
     },
     nombre:{
         type:String,
         required: [true, 'El nombre es obligatorio'],
+
 
     },
     precio:{
@@ -24,6 +26,10 @@ const GuitarSchema = Schema({
         required: [true, 'El precio es obligatorio'],
 
     },
+    idUser:{
+        type: String,
+        require: [true, 'El id del usuario es obligatorio']
+    }
 
 });
 
