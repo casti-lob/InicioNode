@@ -1,0 +1,268 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "guitars",
+    "dateExported": "2023-05-07T14:57:44.369Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "da92355a-bcc6-4634-92f6-d778ce9e862c",
+            "name": "Mal",
+            "containerId": "",
+            "created": "2023-05-06T10:28:56.969Z",
+            "sortNum": 10000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "e6a9ef66-c816-4c99-9063-8b10cd479588",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "",
+            "name": "getGuitars",
+            "url": "http://localhost:8080/guitars?nombre=E-45",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-04-03T10:09:07.458Z",
+            "modified": "2023-05-06T10:20:41.423Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "nombre",
+                    "value": "E-45",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "2007cf88-dd3f-4c66-b7d4-dbf666ab2da2",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "",
+            "name": "addGuitar",
+            "url": "http://localhost:8080/guitars/add",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-04-03T11:27:16.749Z",
+            "modified": "2023-05-06T15:09:23.288Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNjM1ZjAzMmNlNTNjMmIxNDNiY2MiLCJpYXQiOjE2ODMzODQ1MjAsImV4cCI6MTY4MzM5ODkyMH0.v_CZIaRakIf6YVW0f8rx9jy39Z-tQQEvYUHxJSLOoNQ"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"marca\":\"yanahaa\",\n   \"categoria\":\"ELECTRICA\",\n   \"modelo\":\"ST\",\n   \"nombre\":\"E-78\",\n   \"precio\":\"500\",\n  \"idUser\":\"6442635f032ce53c2b143bcc\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "acae2cb3-74aa-48e7-b59c-c4f44466631b",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "",
+            "name": "deleteGuitar",
+            "url": "http://localhost:8080/guitars/6456422fd31002d31f88ca92?userId=6442635f032ce53c2b143bcc",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2023-04-03T11:27:29.323Z",
+            "modified": "2023-05-06T12:16:47.510Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNjM1ZjAzMmNlNTNjMmIxNDNiY2MiLCJpYXQiOjE2ODMzNjk0NzMsImV4cCI6MTY4MzM4Mzg3M30.HR3Dhk7TF6wDQv4AlK4hR5xp33ppOGSCLWRqeTnmN2g"
+                }
+            ],
+            "params": [
+                {
+                    "name": "userId",
+                    "value": "6442635f032ce53c2b143bcc",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "0a64b904-3131-4cea-817f-b8d18e32881f",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "",
+            "name": "updateGuitar",
+            "url": "http://localhost:8080/guitars/64566da3bea21930e37c9de4",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-04-03T11:27:41.973Z",
+            "modified": "2023-05-06T15:39:35.446Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNjM1ZjAzMmNlNTNjMmIxNDNiY2MiLCJpYXQiOjE2ODMzODQ1MjAsImV4cCI6MTY4MzM5ODkyMH0.v_CZIaRakIf6YVW0f8rx9jy39Z-tQQEvYUHxJSLOoNQ"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"marca\":\"MODddBien\",\n   \"categoria\":\"ELECTRICA\",\n   \"modelo\":\"STtt\",\n   \"nombre\":\"E-78\",\n   \"precio\":\"5\"\n  \n   \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f7d3a708-658b-4649-a8d0-aa63baeba5e7",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "",
+            "name": "getGuitar",
+            "url": "http://localhost:8080/guitars/645629e211cb1c4a5e5a7662",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-05-06T09:40:49.733Z",
+            "modified": "2023-05-06T10:28:18.881Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "4913c1e1-c231-4164-b65f-075b7464592d",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "da92355a-bcc6-4634-92f6-d778ce9e862c",
+            "name": "getGuitarID",
+            "url": "http://localhost:8080/guitars/645629e211cb1c4a5e5a766",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-05-06T10:29:13.273Z",
+            "modified": "2023-05-06T10:29:20.833Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8a4425f7-205f-48f1-8f30-5ca2fd425cef",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "da92355a-bcc6-4634-92f6-d778ce9e862c",
+            "name": "addGuitarSinDatos",
+            "url": "http://localhost:8080/guitars/add",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-05-06T10:33:20.717Z",
+            "modified": "2023-05-06T10:38:43.156Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNjM1ZjAzMmNlNTNjMmIxNDNiY2MiLCJpYXQiOjE2ODMzNjk0NzMsImV4cCI6MTY4MzM4Mzg3M30.HR3Dhk7TF6wDQv4AlK4hR5xp33ppOGSCLWRqeTnmN2g"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "57c46e36-c065-44ec-8289-2d1dbb2d3df7",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "da92355a-bcc6-4634-92f6-d778ce9e862c",
+            "name": "addGuitarConUserMal",
+            "url": "http://localhost:8080/guitars/add",
+            "method": "POST",
+            "sortNum": 85000,
+            "created": "2023-05-06T10:53:03.420Z",
+            "modified": "2023-05-06T10:55:41.005Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNjM1ZjAzMmNlNTNjMmIxNDNiY2MiLCJpYXQiOjE2ODMzNjk0NzMsImV4cCI6MTY4MzM4Mzg3M30.HR3Dhk7TF6wDQv4AlK4hR5xp33ppOGSCLWRqeTnmN2g"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"marca\":\"ibanez\",\n   \"categoria\":\"ELECTRICA\",\n   \"modelo\":\"ST\",\n   \"nombre\":\"E-78\",\n   \"precio\":\"500\",\n   \"idUser\":\"6442635f032ce53c2b143bcc\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "48bc3e86-4638-42a7-ad6f-25d2110ccc88",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "da92355a-bcc6-4634-92f6-d778ce9e862c",
+            "name": "addGuitarSinToken",
+            "url": "http://localhost:8080/guitars/add",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-05-06T10:38:50.240Z",
+            "modified": "2023-05-06T10:39:26.343Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNjM1ZjAzMmNlNTNjMmIxNDNiY2MiLCJpYXQiOjE2ODMzNjk0NzMsImV4cCI6MTY4MzM4Mzg3M30.HR3Dhk7TF6wDQv4AlK4hR5xp33ppOGSCLWRqeTnmN2g",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d4681483-90b0-41d6-8f79-fce223523d90",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "da92355a-bcc6-4634-92f6-d778ce9e862c",
+            "name": "updateGuitarSinToken",
+            "url": "http://localhost:8080/guitars/645634ef28cfbddce18bf2ee",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2023-05-06T11:14:20.036Z",
+            "modified": "2023-05-06T11:14:35.367Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"marca\":\"ibanez\",\n   \"categoria\":\"ELECTRICA\",\n   \"modelo\":\"ST\",\n   \"nombre\":\"E-78\",\n   \"precio\":\"5\",\n   \"idUser\":\"6442635f032ce53c2b143bcc\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "289c4c50-cb59-4af1-98e7-53a7f90d7260",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "da92355a-bcc6-4634-92f6-d778ce9e862c",
+            "name": "updateGuitar SinDatos",
+            "url": "http://localhost:8080/guitars/645634ef28cfbddce18bf2ee",
+            "method": "PUT",
+            "sortNum": 110000,
+            "created": "2023-05-06T11:19:59.006Z",
+            "modified": "2023-05-06T11:20:18.421Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQyNjM1ZjAzMmNlNTNjMmIxNDNiY2MiLCJpYXQiOjE2ODMzNjk0NzMsImV4cCI6MTY4MzM4Mzg3M30.HR3Dhk7TF6wDQv4AlK4hR5xp33ppOGSCLWRqeTnmN2g"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "df2e447d-8e33-462e-b041-5831d01f33cf",
+            "colId": "eb6eb319-267c-43ca-a481-af3fc3c6c733",
+            "containerId": "da92355a-bcc6-4634-92f6-d778ce9e862c",
+            "name": "deleteGuitarSinToken",
+            "url": "http://localhost:8080/guitars/645629e211cb1c4a5e5a7662",
+            "method": "DELETE",
+            "sortNum": 120000,
+            "created": "2023-05-06T12:01:44.773Z",
+            "modified": "2023-05-06T12:01:57.444Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
