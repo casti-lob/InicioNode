@@ -2,7 +2,7 @@
 const db = require('../models/db')
 const Guitars = require("../models/guitar")
 db.connect('data',['guitars.json'])
-const Users = require("../models/user")
+const Users = require("../models/user");
 
 async function getGuitars(req, res){
    //queryParams
@@ -33,21 +33,21 @@ async function getGuitar(req, res){
 }
 
 async function addGuitar(req,res){
-    const {marca,categoria,modelo,nombre,precio,idUser} = req.body
+    const {marca,categoria,modelo,nombre,precio} = req.body
+    const user = req.userd
+    const idUser= user._id
+    console.log(idUser)
     const guitar = new Guitars({marca,categoria,modelo,nombre,precio,idUser})
     
-    const user = await Users.findById(guitar.idUser);
-    if(!user.length){
+   
         await guitar.save();
         res.json({guitar})
-    }else{
-        res.status(404).json(`No existe el usuario con ${idUser}`)
-    }
+   
     
 }
 
 async function delGuitar(req,res){
-
+ /*
     const {userId} = req.query
     let user;
     if(!userId){
@@ -67,26 +67,30 @@ async function delGuitar(req,res){
             res.status(400).send(`El usuario ${user.name} no es ADMINISTRADOR`)
         }
     }
-    /*
-   
-   
-    
-*/
-    
-}
 
-async function updateGuitar(req,res){
-    const idGuitar = req.params.id
-    
-    const guitar= req.body
-    const checkguitar = await Guitars.find({_id: idGuitar})
-    console.log(checkguitar)
-    
-    if(checkguitar.length){
-        await Guitars.updateOne({_id: idGuitar},guitar)
+*/
+    const idGuitar = req.params.id    
+    const guitar = await Guitars.find({_id: idGuitar})
+    if(guitar.length){
+        await Guitars.deleteOne({_id:idGuitar})
         res.json(guitar)
     }else{
         res.status(400).send(`No existe la guitarra con id${idGuitar}`)
+    }
+}
+
+async function updateGuitar(req,res){
+    const newGuitar= req.body
+    const guitar = req.guitar
+    const idGuitar = guitar._id
+    const checkguitar = await Guitars.find({_id: idGuitar})
+    
+    
+    if(checkguitar.length){
+        await Guitars.updateOne({_id: idGuitar},newGuitar)
+        res.json(newGuitar)
+    }else{
+        res.status(400).send(`No existe la guitarra con id ${idGuitar}`)
     }
    
     

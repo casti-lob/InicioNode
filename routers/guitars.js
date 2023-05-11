@@ -6,6 +6,8 @@ const {getGuitars, getGuitar, addGuitar,delGuitar,updateGuitar} = require('../co
 const {check} =require('express-validator');
 const {validarCampos} = require('../middlewares/validate-fields');
 const {validateJWT} = require('../middlewares/validate-jwt');
+const {isAdmin} = require('../middlewares/isAdmin')
+const {isOwner}= require('../middlewares/isOwner')
 
 router.get('/', getGuitars)
 
@@ -22,18 +24,20 @@ router.post('/add',[
     check('modelo', 'El modelo es requerida').not().isEmpty(),
     check('nombre', 'El nombre es requerida').not().isEmpty(),
     check('precio', 'El precio es requerida').not().isEmpty(),
-    check('idUser', 'El id del usuario es necesario').not().isEmpty(),
+    check('idUser', 'No puedes poner el id del usuario').isEmpty(),
     validarCampos
 ], addGuitar)
 router.delete('/:id',[
     validateJWT,
+    isAdmin,
     
     validarCampos
 ],delGuitar)
 
 router.put('/:id',[
     validateJWT,
-    
+    isAdmin,
+    isOwner,
     check('marca', 'La marca es requerida').not().isEmpty(),
     check('categoria', 'La categoria es requerida').not().isEmpty(),
     check('modelo', 'El modelo es requerida').not().isEmpty(),
