@@ -7,7 +7,10 @@ require ('dotenv').config();
 const birds = require('./routers/birds.js')
 const guitars = require('./routers/guitars.js')
 const users = require('./routers/users.js')
+const file = require('./routers/files.js')
 
+//subida fichero
+const fileUpload = require('express-fileupload')
 //Conexion MondoDB
 const { dbConnection } = require('./database/config.js');
 async function connectAtlas(){
@@ -35,6 +38,15 @@ app.use('guitars/:id',guitars)
 app.use('/users',users)
 app.use('/users/auth/login',users)
 app.use('users/:id',users)
+
+//Subida de fichero
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : '/tmp/',
+    createParentPath: true
+}))
+app.use('/uploadFile', file)
+
 
 app.listen(process.env.PORT)
 
