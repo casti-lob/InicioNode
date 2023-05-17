@@ -46,6 +46,7 @@ app.use(fileUpload({
     createParentPath: true
 }))
 app.use('/uploadFile', file)
+app.use('/uploadFile/:colection/:id', file)
 
 
 app.listen(process.env.PORT)

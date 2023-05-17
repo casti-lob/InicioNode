@@ -29,6 +29,9 @@ const GuitarSchema = Schema({
     idUser:{
         type: String,
         require: [true, 'El id del usuario es obligatorio']
+    },
+    img:{
+        type:String
     }
 
 });
